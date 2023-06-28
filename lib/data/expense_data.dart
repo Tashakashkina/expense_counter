@@ -1,7 +1,8 @@
 import 'package:expense_counter/datetime/date_time_helper.dart';
 import 'package:expense_counter/models/expense_item.dart';
+import 'package:flutter/material.dart';
 
-class ExpenseData {
+class ExpenseData extends ChangeNotifier {
   // list of all expenses
   List<ExpenseItem> overallExpenseList = [];
 
@@ -14,12 +15,15 @@ class ExpenseData {
 
   void addNewExpense(ExpenseItem newExpense) {
     overallExpenseList.add(newExpense);
+
+    notifyListeners();
   }
 
   // delete old expense
 
   void deleteExpense(ExpenseItem expense) {
     overallExpenseList.remove(expense);
+    notifyListeners();
   }
 
   // get weekday from a dateTime
@@ -51,7 +55,7 @@ class ExpenseData {
     DateTime today = DateTime.now();
 
     for (int i = 0; i < 7; i++) {
-      if (getDayName(today.subtract(Duration(days: 1))) == 'Вс') {
+      if (getDayName(today.subtract(Duration(days: 1))) == 'Пн') {
         startOfWeek = today.subtract(Duration(days: 1));
       }
     }
