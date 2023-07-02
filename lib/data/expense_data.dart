@@ -30,19 +30,19 @@ class ExpenseData extends ChangeNotifier {
   String getDayName(DateTime dateTime) {
     switch (dateTime.weekday) {
       case 1:
-        return 'Пн';
+        return 'Mon';
       case 2:
-        return 'Вт';
+        return 'Tue';
       case 3:
-        return 'Ср';
+        return 'Wed';
       case 4:
-        return 'Чт';
+        return 'Thur';
       case 5:
-        return 'Пт';
+        return 'Fru';
       case 6:
-        return 'Сб';
+        return 'Sat';
       case 7:
-        return 'Вс';
+        return 'Sun';
 
       default:
         return '';
@@ -50,16 +50,16 @@ class ExpenseData extends ChangeNotifier {
   }
 
   DateTime startOfWeekDate() {
-    DateTime? startOfWeek;
+    DateTime startOfWeek = DateTime(0);
 
     DateTime today = DateTime.now();
 
     for (int i = 0; i < 7; i++) {
-      if (getDayName(today.subtract(Duration(days: 1))) == 'Пн') {
-        startOfWeek = today.subtract(Duration(days: 1));
+      if (getDayName(today.subtract(Duration(days: i))) == 'Sun') {
+        startOfWeek = today.subtract(Duration(days: i));
       }
     }
-    return startOfWeek!;
+    return startOfWeek;
   }
 
   Map<String, double> calculateDailyExpenseSummary() {

@@ -1,3 +1,4 @@
+import 'package:expense_counter/components/expense_summary.dart';
 import 'package:expense_counter/components/expense_tile.dart';
 import 'package:expense_counter/data/expense_data.dart';
 import 'package:expense_counter/models/expense_item.dart';
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
             ),
             body: ListView(children: [
               // weekly summary
-
+              ExpenseSummary(startOfWeek: value.startOfWeekDate()),
               //expense list
 
               ListView.builder(
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: value.getAllExpanseList().length,
                 itemBuilder: (context, index) => ExpenseTile(
                   name: value.getAllExpanseList()[index].name,
-                  amount: value.getAllExpanseList()[index].dateTime.toString(),
+                  amount: value.getAllExpanseList()[index].amount,
                   dateTime: value.getAllExpanseList()[index].dateTime,
                 ),
               ),

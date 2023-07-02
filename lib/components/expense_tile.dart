@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:expense_counter/data/expense_data.dart';
 
 class ExpenseTile extends StatelessWidget {
   final String name;
@@ -14,8 +15,8 @@ class ExpenseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(name),
-      subtitle: Text('${dateTime.day} / ${dateTime.day} / ${dateTime.day}'),
-      trailing: Text(amount + '\Р'),
+      subtitle: Text('${dateTime.day} / ${dateTime.month} / ${dateTime.year}'),
+      trailing: Text('$amount' ' Р'),
     );
   }
 }
