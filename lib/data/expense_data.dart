@@ -38,7 +38,7 @@ class ExpenseData extends ChangeNotifier {
       case 4:
         return 'Thur';
       case 5:
-        return 'Fru';
+        return 'Fri';
       case 6:
         return 'Sat';
       case 7:
@@ -55,7 +55,7 @@ class ExpenseData extends ChangeNotifier {
     DateTime today = DateTime.now();
 
     for (int i = 0; i < 7; i++) {
-      if (getDayName(today.subtract(Duration(days: i))) == 'Sun') {
+      if (getDayName(today.subtract(Duration(days: i))) == 'Mon') {
         startOfWeek = today.subtract(Duration(days: i));
       }
     }

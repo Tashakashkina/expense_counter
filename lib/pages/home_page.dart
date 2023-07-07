@@ -24,10 +24,28 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   TextField(
                     controller: newExpenseNameController,
+                    decoration: const InputDecoration(hintText: 'Название'),
                   ),
-                  TextField(
-                    controller: newExpenseAmountController,
-                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(hintText: 'Руб'),
+                          controller: newExpenseRubleController,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 120,
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(hintText: 'Коп'),
+                          controller: newExpensePennyController,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
               actions: [
@@ -38,9 +56,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void save() {
+    String amount =
+        '${newExpenseRubleController.text}.${newExpensePennyController.text}';
     ExpenseItem newExpense = ExpenseItem(
         name: newExpenseNameController.text,
-        amount: newExpenseAmountController.text,
+        amount: amount,
         dateTime: DateTime.now());
     Provider.of<ExpenseData>(context, listen: false).addNewExpense(newExpense);
 
@@ -55,7 +75,8 @@ class _HomePageState extends State<HomePage> {
 
   void clear() {
     newExpenseNameController.clear();
-    newExpenseAmountController.clear();
+    newExpenseRubleController.clear();
+    newExpensePennyController.clear();
   }
 
   @override
@@ -64,6 +85,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, value, child) => Scaffold(
             backgroundColor: Colors.grey[300],
             floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.grey[800],
               onPressed: addNewExpense,
               child: const Icon(Icons.plus_one_sharp),
             ),
@@ -71,7 +93,7 @@ class _HomePageState extends State<HomePage> {
               // weekly summary
               ExpenseSummary(startOfWeek: value.startOfWeekDate()),
               //expense list
-
+              const SizedBox(height: 15),
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
