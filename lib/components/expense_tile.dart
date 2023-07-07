@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:expense_counter/data/expense_data.dart';
 
 class ExpenseTile extends StatelessWidget {
   final String name;

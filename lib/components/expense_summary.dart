@@ -9,6 +9,32 @@ class ExpenseSummary extends StatelessWidget {
   final DateTime startOfWeek;
   const ExpenseSummary({super.key, required this.startOfWeek});
 
+  double calculateMax(
+      ExpenseData value,
+      String sunday,
+      String monday,
+      String tuesday,
+      String wednesday,
+      String thursday,
+      String friday,
+      String saturday) {
+    double? max = 100;
+
+    List<double> values = [
+      value.calculateDailyExpenseSummary()[sunday] ?? 0,
+      value.calculateDailyExpenseSummary()[monday] ?? 0,
+      value.calculateDailyExpenseSummary()[tuesday] ?? 0,
+      value.calculateDailyExpenseSummary()[wednesday] ?? 0,
+      value.calculateDailyExpenseSummary()[thursday] ?? 0,
+      value.calculateDailyExpenseSummary()[friday] ?? 0,
+      value.calculateDailyExpenseSummary()[saturday] ?? 0,
+    ];
+    values.sort();
+
+    max = values.last * 1.1;
+    return max == 0 ? 100 : max;
+  }
+
   @override
   Widget build(BuildContext context) {
     String sunday =
@@ -30,7 +56,8 @@ class ExpenseSummary extends StatelessWidget {
       builder: (context, value, child) => SizedBox(
         height: 200,
         child: MyBarGraph(
-          maxY: 100,
+          maxY: calculateMax(value, sunday, monday, tuesday, wednesday,
+              thursday, friday, saturday),
           sunAmount: value.calculateDailyExpenseSummary()[sunday] ?? 0,
           monAmount: value.calculateDailyExpenseSummary()[monday] ?? 0,
           tueAmount: value.calculateDailyExpenseSummary()[tuesday] ?? 0,

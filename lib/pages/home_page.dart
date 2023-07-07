@@ -14,6 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Provider.of<ExpenseData>(context, listen: false).prepareData();
+  }
+
   void addNewExpense() {
     showDialog(
         context: context,
