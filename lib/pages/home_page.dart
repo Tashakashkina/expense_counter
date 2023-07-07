@@ -62,15 +62,23 @@ class _HomePageState extends State<HomePage> {
             ));
   }
 
-  void save() {
-    String amount =
-        '${newExpenseRubleController.text}.${newExpensePennyController.text}';
-    ExpenseItem newExpense = ExpenseItem(
-        name: newExpenseNameController.text,
-        amount: amount,
-        dateTime: DateTime.now());
-    Provider.of<ExpenseData>(context, listen: false).addNewExpense(newExpense);
+  void deleteExpense(ExpenseItem expense) {
+    Provider.of<ExpenseData>(context, listen: false).deleteExpense(expense);
+  }
 
+  void save() {
+    if (newExpenseNameController.text.isNotEmpty &&
+        newExpenseRubleController.text.isNotEmpty &&
+        newExpensePennyController.text.isNotEmpty) {
+      String amount =
+          '${newExpenseRubleController.text}.${newExpensePennyController.text}';
+      ExpenseItem newExpense = ExpenseItem(
+          name: newExpenseNameController.text,
+          amount: amount,
+          dateTime: DateTime.now());
+      Provider.of<ExpenseData>(context, listen: false)
+          .addNewExpense(newExpense);
+    }
     Navigator.pop(context);
     clear();
   }
@@ -109,6 +117,8 @@ class _HomePageState extends State<HomePage> {
                   name: value.getAllExpanseList()[index].name,
                   amount: value.getAllExpanseList()[index].amount,
                   dateTime: value.getAllExpanseList()[index].dateTime,
+                  deleteTapped: (p0) =>
+                      deleteExpense(value.getAllExpanseList()[index]),
                 ),
               ),
             ])));

@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../models/expense_item.dart';
 
 class HiveDataBase {
-  final _myBox = Hive.box('expense_database');
+  final _myBox = Hive.box('expense_database1');
 
   void saveData(List<ExpenseItem> allExpense) {
     List<List<dynamic>> allExpenseFormatted = [];
