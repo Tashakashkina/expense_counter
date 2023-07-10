@@ -1,4 +1,4 @@
-# expense_counter
+# :credit_card: :chart: expense_counter
 
 A new Flutter project.
 
