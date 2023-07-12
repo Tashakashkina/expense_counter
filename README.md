@@ -1,8 +1,11 @@
 # :credit_card: :chart: expense_counter
 
-A new Flutter project.
 
-## Getting Started
+
+## 
+![1 1](https://github.com/Tashakashkina/expense_counter/assets/84247746/3d9a527a-fb93-40a0-bb7a-c8abae02a55a)
+![1 2](https://github.com/Tashakashkina/expense_counter/assets/84247746/a9217d8d-c468-4e35-a801-978b9c73ed35)
+
 
 This project is a starting point for a Flutter application.
 
